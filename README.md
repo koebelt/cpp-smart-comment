@@ -4,8 +4,7 @@ How to install locally :
     copy the extention to the`~/.vscode/extentions/` folder then restart vscode .
 
     On windows :
-    copy the extention to the`%USERPROFILE%` folder then restart vscode .
-
+    copy the extention to the`%USERPROFILE%\.vscode\extensions.` folder then restart vscode .
 
 If the UI configuration for the author doesn't work:
 
