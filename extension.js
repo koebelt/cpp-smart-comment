@@ -58,7 +58,7 @@ function activate(context) {
 		let author =  ` @author : ${conf.author}`
 		let spaces = ""
 		
-		if (line.match(/(([A-Z:a-z\-\_<>]+ )?[A-Z:a-z\-\_<>]+\(((([A-Z:a-z\-\_<>]+ [A-Za-z0-9*\-\_<>]+(, )?))?)*\))|(class [A-Za-z|-|-0-9]+( : public [A-Za-z|-|-0-9]+)?)/) == null) {
+		if (line.match(/(([A-Z:a-z\-\_<>]+ )?[A-Z:a-z\-\_<>]+\(((([A-Z:a-z\-\_<>]+( [A-Za-z0-9*\-\_<>]+)?(, )?))?)*\))|(class [A-Za-z|-|-0-9]+( : public [A-Za-z|-|-0-9]+)?)/) == null) {
 			vscode.window.showErrorMessage("Unable to parse the currently selected line.");
 			return;
 		}
@@ -100,7 +100,7 @@ function activate(context) {
 					let type = func.name[0] == '~' ? "destructor" : "constructor"
 					comment = comment.concat(spaces, constants.SYNTAX.commentMid, ` @brief Class ${func.name[0] == '~' ? func.name.substring(1) : func.name} ${type}` , fileInfo.eol)
 					func.args = line.split('(')[1].replace(')', '')
-					if (func.args.length > 0) {
+					if (func.args.length > 0 && func.args != "void") {
 						func.args = func.args.split(',')
 						for (var i = 0; i < func.args.length; i++) {
 							if (func.args[i][0] == ' ')
@@ -118,7 +118,6 @@ function activate(context) {
 							comment = comment.concat(spaces, constants.SYNTAX.commentMid, ` @param ${name} (${returntype}): ${desc}`, fileInfo.eol)
 						}
 					}
-					vscode.window.showInformationMessage("class constrtuctor/destructor");
 				} else {
 					func.returntype = line.split(' ')[0]
 					func.namestr = line.split(' ')[1].split('(')[0]
@@ -135,7 +134,7 @@ function activate(context) {
 					});
 					comment = comment.concat(spaces, constants.SYNTAX.commentMid, ` @brief Function ${func.name} (Class ${func.class}): ${brief}` , fileInfo.eol)
 					func.args = line.split('(')[1].replace(')', '')
-					if (func.args.length > 0) {
+					if (func.args.length > 0 &&func.args != "void") {
 						func.args = func.args.split(',')
 						for (var i = 0; i < func.args.length; i++) {
 							if (func.args[i][0] == ' ')

@@ -2,11 +2,11 @@
   "name": "cpp-smart-comment",
 	"displayName": "cpp-smart-comment",
 	"description": "Extention that creates comment based on function declaration or class constructor in c++",
-	"publisher": "koebelt <thomas.koebel@epitech.eu>",
-	"version": "1.0.0",
+	"publisher": "koebelt",
+	"version": "1.0.1",
 	"repository": "https://github.com/koebelt/cpp-smart-comment",
 	"engines": {
-		"vscode": "^1.67.0"
+		"vscode": "^1.55.0"
 	},
 	"categories": [
 		"Other"
