@@ -168,7 +168,7 @@ function activate(context) {
 				});
 				comment = comment.concat(spaces, constants.SYNTAX.commentMid, ` @brief Function ${func.name}: ${brief}` , fileInfo.eol)
 				func.args = line.split('(')[1].replace(')', '')
-				if (func.args.length > 0) {
+				if (func.args.length > 0 && func.args != "void") {
 					func.args = func.args.split(',')
 					for (var i = 0; i < func.args.length; i++) {
 						if (func.args[i][0] == ' ')
